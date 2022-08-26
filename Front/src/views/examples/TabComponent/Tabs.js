@@ -37,25 +37,26 @@ const Tabs = () => {
     className={activeTab === "tab1" ? "active" : ""}
     onClick={handleTab1}
   >
-    Tab 1
+    Espace Administration
   </li>
   <li
     className={activeTab === "tab2" ? "active" : ""}
     onClick={handleTab2}
   >
-    Tab 2
+    Espace 
+    Professeur
   </li>
   <li
     className={activeTab === "tab3" ? "active" : ""}
     onClick={handleTab3}
   >
-    Tab 3  
+    Espace élève   
   </li>  
   <li  
     className={activeTab === "tab4" ? "active" : ""}  
     onClick={handleTab4} 
   >  
-    Tab 4  
+    Espace Parent  
   </li>  
 </ul>          
 <div className="outlet">

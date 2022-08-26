@@ -32,9 +32,22 @@ import {
   Nav,
   Container,
   Media,
+  ButtonGroup,
+  Button,
 } from "reactstrap";
+import { useHistory } from 'react-router-dom';
+import useToken from "components/useToken";
 
 const AdminNavbar = (props) => {
+  const history = useHistory();
+  const { token, setToken } = useToken();
+function logout(){
+//
+if(localStorage.getItem('token')){
+  return localStorage.clear('token');
+    
+  }}
+
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main" color="red">
@@ -45,7 +58,7 @@ const AdminNavbar = (props) => {
           >
             {props.brandText}
           </Link>
-          <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+          <Form  className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <FormGroup className="mb-0">
               <InputGroup className="input-group-alternative">
                 <InputGroupAddon addonType="prepend">
@@ -55,9 +68,11 @@ const AdminNavbar = (props) => {
                 </InputGroupAddon>
                 <Input placeholder="Search" type="text" />
               </InputGroup>
+              <ButtonGroup>
+                <Button onClick={logout()}>Déconnexion</Button>
+              </ButtonGroup>
             </FormGroup>
           </Form>
-          
         </Container>
       </Navbar>
     </>

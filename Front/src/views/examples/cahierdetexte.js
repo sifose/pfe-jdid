@@ -10,7 +10,7 @@ import {
     Row,
   } from "reactstrap";
 
-
+  import useToken from "components/useToken";
  
 // Define a default UI for filtering
 function GlobalFilter({
@@ -191,13 +191,16 @@ function FilterTableComponent() {
 
    
     const[data,setData]=useState([])
-  
+    
 
   useEffect(()=>{
-    fetch("http://localhost:8080/api/cahiers")
+
+  fetch("http://localhost:8080/api/cahiers")
+    
     .then(res=>res.json())
     .then((result)=>{
       setData(result);
+      
     }
   )
   },[])

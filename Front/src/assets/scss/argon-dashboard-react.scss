@@ -111,7 +111,7 @@
 }
 
 ul.nav {
-    width: 60%;
+    width: 90%;
     margin: 0 auto 2rem;
     display: flex;
     align-items: center;
@@ -124,7 +124,7 @@ ul.nav {
     }
   }
   ul.nav li {
-    width: 50%;
+    width: 25%;
     padding: 1rem;
     list-style: none;
     text-align: center;
@@ -148,5 +148,8 @@ ul.nav {
   .FirstTab p,
 .SecondTab p, .ThirdTab p, .ForthTab p {
   font-size: 2rem;
+  text-align: center;
+}
+.FirstTab form {
   text-align: center;
 }

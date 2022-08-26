@@ -15,13 +15,19 @@ import Header from "components/Headers/Header.js";
 export default function Cahier()  {
 
   const[cahiers,setCahiers]=useState([])
+ 
   
-
   useEffect(()=>{
-    fetch("http://localhost:8080/api/cahiers")
+     fetch("http://localhost:8080/api/cahiers",{
+      method: "Get",
+      headers: {
+        "content-type": "application/json",
+        Authorization: "Bearer" + localStorage.getItem('token')
+  }})
     .then(res=>res.json())
     .then((result)=>{
       setCahiers(result);
+      
     }
   )
   },[])

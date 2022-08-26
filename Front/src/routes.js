@@ -27,7 +27,7 @@ import absence from "views/examples/absence.js";
 import message from "views/examples/Message.js";
 import note from "views/examples/note.js";
 import clubs from "views/examples/clubs.js";
-import Cahier from "views/examples/cahierdetexte.js";
+import Cahier from "views/examples/cahier.js";
 
 var routes = [
   {

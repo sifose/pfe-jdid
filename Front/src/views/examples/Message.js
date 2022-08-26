@@ -61,7 +61,9 @@ import {
       
       fetch("http://localhost:8080/api/message",{
         method:"POST",
-        headers:{"Content-Type":"application/json"},
+        headers:{"Content-Type":"application/json"
+      }
+      ,
         body:JSON.stringify(message)
     }).then(()=>{
       console.log("New message added")
@@ -115,7 +117,7 @@ import {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
-            'Content-type': 'application/json',
+            'Content-type': 'application/json'
           },
           /*body: JSON.stringify({
               username: '{userName}',
