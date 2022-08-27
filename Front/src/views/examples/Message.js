@@ -52,21 +52,23 @@ import {
     etat: etat
       }
      
-      console.log(message)
-      console.log(etudiant)
-      console.log(classe)
-      console.log(annee)
+    //  console.log(message);
+      //console.log(etudiant)
+     // console.log(classe)
+     // console.log(annee)
 
       
       
       fetch("http://localhost:8080/api/message",{
         method:"POST",
-        headers:{"Content-Type":"application/json"
+        headers:{"Content-Type":"application/json",
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }
       ,
         body:JSON.stringify(message)
     }).then(()=>{
       console.log("New message added")
+      console.log(message)
     })
   }
 
@@ -117,7 +119,8 @@ import {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
-            'Content-type': 'application/json'
+            'Content-type': 'application/json',
+            "Authorization": `Bearer ${localStorage.getItem('token')}`
           },
           /*body: JSON.stringify({
               username: '{userName}',
@@ -132,9 +135,10 @@ import {
         setClasse(ev.target.value);
         console.log('in code cl changed')
         console.log(ev.target.value)
-        fetch(`http://localhost:8080/api//etudiants/classe/${ev.target.value}`, {
+        fetch(`http://localhost:8080/api/etudiants/classe/${ev.target.value}`, {
           method: 'GET',
           headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Accept': 'application/json',
             'Content-type': 'application/json',
           },

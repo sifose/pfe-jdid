@@ -30,6 +30,7 @@ import clubs from "views/examples/clubs.js";
 import Cahier from "views/examples/cahier.js";
 
 var routes = [
+  
   {
     path: "/index",
     name: "Dashboard",

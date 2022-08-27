@@ -50,12 +50,10 @@ function Index() {
   const { token, setToken } = useToken();
    
 
-  if(!token) {
-    history.push("/auth/login")}
+  if(!localStorage.getItem('token')) {
+    history.push("/auth/login")} 
+
     
-
-
-
   return (
     <>
       <Header />

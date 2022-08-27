@@ -29,6 +29,8 @@ export default function Absence()  {
   const [dataenseignant, setDataenseignant] = useState([]);
   const [markallstudentspresent, setMarkallstudentspresent]= useState(true);
   const [markallstudentsabsent, setMarkallstudentsabsent]= useState(false);
+  const [classe, setClasse] = useState('');
+  const [module, setModule] = useState('');
 
   /*constructor() {
     super();
@@ -55,9 +57,9 @@ export default function Absence()  {
 
   function submitAbsence(e){
     e.preventDefault()
-    let enseignant = dataenseignant
-    let classe = dataclasse
-    let module = datamodule
+    //let enseignant = dataenseignant
+    //let classe = dataclasse
+    //let module = datamodule
     let absentStudents = [];
     datastudent.forEach((student) => {
       console.log(student)
@@ -65,19 +67,43 @@ export default function Absence()  {
       if(e.target[student.idEt].value == 'true'){
         console.log('HERE')
         absentStudents.push(student.idEt)
+        
       }
     })
     console.log(absentStudents)
+   absentStudents.forEach((absentstudent) => {
+    const absences = {
+      espEtudiant: {idEt : absentstudent},
+      codeModule: module,
+      codeCl: classe,
+      anneeDeb : new Date().getFullYear(),
+      dateSeance : new Date(),
+      numSeance : 1
+    }
+    fetch("http://localhost:8080/api/absences",{
+      method:"POST",
+      headers:{"Content-Type":"application/json",
+      'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    }
+    ,
+      body:JSON.stringify(absences)
+  }).then(()=>{
+    console.log("New absence added")
+    console.log(absences)
+  })
+   })
+   
+  
   }
-
-
 
   function codeClValueChanged(ev) {
     console.log('in code cl changed')
     console.log(ev.target.value)
-    fetch(`http://localhost:8080/api//etudiants/classe/${ev.target.value}`, {
+    setClasse(ev.target.value);
+    fetch(`http://localhost:8080/api/etudiants/classe/${ev.target.value}`, {
       method: 'GET',
       headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Accept': 'application/json',
         'Content-type': 'application/json',
       },
@@ -140,6 +166,7 @@ export default function Absence()  {
     fetch('http://localhost:8080/api/modules', {
       method: 'GET',
       headers: {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Accept': 'application/json',
         'Content-type': 'application/json',
       },
@@ -156,6 +183,7 @@ export default function Absence()  {
       fetch('http://localhost:8080/api/enseignants', {
       method: 'GET',
       headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Accept': 'application/json',
         'Content-type': 'application/json',
       },
@@ -172,6 +200,7 @@ export default function Absence()  {
     fetch('http://localhost:8080/api/classes', {
       method: 'GET',
       headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Accept': 'application/json',
         'Content-type': 'application/json',
       },
@@ -235,6 +264,7 @@ export default function Absence()  {
                     id="idEns"
                     placeholder="Code de la classe"
                     type="select"
+                    
                   >
                     {dataenseignant.map((option) => (
                       <option value={option.idEns}>{option.nomEns}</option>
@@ -260,6 +290,7 @@ export default function Absence()  {
                     placeholder="Code de la classe"
                     type="select"
                     onChange={codeClValueChanged}
+
                   >
                     {dataclasse.map((option) => (
                       <option value={option.codeCl}>{option.codeCl}</option>
@@ -284,6 +315,8 @@ export default function Absence()  {
                     id="codeModule"
                     placeholder="Username"
                     type="select"
+                    onChange={(e)=>setModule(e.target.value)}
+
                   >
                     {datamodule.map((option) => (
                       <option value={option.codeModule}>{option.designation}</option>

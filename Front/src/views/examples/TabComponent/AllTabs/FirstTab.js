@@ -35,7 +35,10 @@ async function loginUser(credentials) {
     //console.log(token.userdetails.authorities[0].authority);
     if(token.token && token.userdetails.authorities[0].authority == 'admin' ){
     history.push("/admin/tables");
-    localStorage.setItem('token',token.token);}
+    localStorage.setItem('token',token.token);
+    localStorage.setItem('role',token.userdetails.authorities[0].authority);
+  }
+
    else { 
     alert('Identifiant et/ou mot de passe incorrectes')}
    
